@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue01/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{tiem|hehe}}<br>
+        {{tiem|hehe("/")}}<br>
+        {{tiem|hehe("-")}}
+    </div>
+    <script>
+        Vue.filter("hehe",(data,params=".")=>{
+            console.log("需要过滤的数据",data);
+            let y = (new Date(data)).getFullYear();
+            let m = (new Date(data)).getMonth() + 1;
+            let d = (new Date(data)).getDate();
+            
+            return `${y}${params}${m}${params}${d}`
+        })
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                tiem:(new Date()).getTime()
+            }
+        })
+    </script>
+</body>
+</html>

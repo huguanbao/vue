@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue01/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <hehe @xixi = "father"></hehe>
+    </div>
+    <!-- 组件模板 -->
+    <template id="tpl">
+        <div>
+            <button @click ="son" >按钮</button>
+        </div>
+    </template>
+    <script>
+        Vue.component("hehe",
+        {
+            template:"#tpl",
+            methods:{
+                son(){
+                    this.$emit("xixi",)
+                }
+            }
+    }
+        )
+
+        let vue = new Vue({
+            el:"#app",
+            methods:{
+                father(){
+                    console.log("我是小哥哥");   
+                }
+            }
+        })
+    </script>
+</body>
+</html>

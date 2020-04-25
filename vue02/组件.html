@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue01/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <hehe></hehe>
+        <xixi></xixi>
+    </div>
+    <!-- 组件模板 -->
+    <template id="tpl">
+        <div>
+        {{name}}
+        </div>
+    </template>
+    
+    <script>
+        // 全局组件
+        // 1、创建组件 2、注册组件 3、使用组件
+        Vue.component("hehe",{template:"<h1>这是全局组件</h1>"});
+        let vue = new Vue({
+            el:"#app",
+            data:{
+              name:"哈哈"  
+            },
+            components:{
+                "xixi":{
+                    template:"#tpl",
+                     data(){
+                     return{
+                     name:"小胡"
+                     }
+                },
+               
+                }
+            }
+        })
+    </script>
+</body>
+</html>

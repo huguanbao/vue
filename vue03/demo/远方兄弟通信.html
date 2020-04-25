@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue01/vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <son1></son1>
+        <hr>
+        <son2></son2>
+    </div>
+    <!-- 组件1 -->
+    <template id="son1">
+        <div class="test1">
+            这里是组件1
+            <button @click="change">toggle</button>
+        </div>
+    </template>
+    <!-- 组件2 -->
+    <template id="son2">
+        <div class="test2">
+            这里是组件2
+            <div class="test" v-if="show"></div>
+        </div>
+    </template>
+    <script>
+        let vue = new Vue()
+        Vue.component("son1",{
+            template:"#son1",
+            methods:{
+                change(){
+                    console.log("空实例",vue);
+                    vue.$emit("hehe");
+                }
+            }
+        })
+        Vue.component("son2",{
+        template:"#son2",
+        data(){
+            return {
+                show: false
+            }
+        },
+        methods:{
+            toggle(){
+                this.show = !this.show 
+            }
+        },
+        mounted(){
+            console.log("组件二挂载");
+            vue.$on("hehe",this.toggle)
+        }
+        })
+        let vm = new Vue({
+            el:"#app",
+            
+        })
+    </script>
+</body>
+</html>

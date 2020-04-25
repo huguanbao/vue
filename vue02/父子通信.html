@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue01/vue.js"></script>
+    <style>
+        #app{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .son{
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        我是父亲
+        <son :xixi = "content"></son>
+    </div>
+    <!-- 组件模板 -->
+    <template id="tpl">
+        <div class="son">
+            我是儿子
+            {{xixi}}
+        </div>
+    </template>
+    <script>
+        Vue.component("son",{
+            template:"#tpl",
+            props:["xixi"]
+        })
+        let vue = new Vue({
+            el:"#app",
+            data:{
+                content:"我是父亲"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../vue01/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <tpl>
+            你好{{name}}
+        </tpl>
+        
+    </div>
+    <!-- 组件模板 -->
+    <template id="tpl">
+        <div>
+            <slot></slot>
+        </div>
+    </template>
+    <script>
+        Vue.component("tpl",{
+            template:"#tpl",
+            
+        })
+        let vm = new Vue({
+            el:"#app",
+            data:{
+                name:"小姐姐"
+            }
+        })
+    </script>
+</body>
+</html>

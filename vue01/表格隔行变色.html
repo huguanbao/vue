@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        table,tr,td{
+            border: 1px solid #000;
+            width: 40px;
+            height: 40px;
+        }
+        .red{
+            background: red;
+        }
+        .green{
+            background: green;
+        }
+        .pink{
+            background: pink;
+        }
+        .purple{
+            background: purple;
+        }
+        .yellow{
+            background: yellow;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <select @change="change">
+            <option v-for = "(item,index) in color" :value = index>{{item}}</option>
+        </select>
+        <table>
+            <tr v-for = "(trItem,trIndex) in table" :class="trIndex%2? color[colorSel][0]:color[colorSel][1]">
+                <td v-for = "(tdItem,tdIndex) in trItem"
+                 @mouseover = "mouseover(tdItem)"
+                  :style = "{opacity:tdItem == select?'0.3':'1'}">
+                    {{tdItem}}
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+   
+    <script>
+        let vue = new Vue({
+            el:"#app",
+            data:{
+                table:[[11,22,33],[44,55,66],[77,88,99]],
+                select:11,
+                color:[["red","green"],["pink","yellow"],["purple","green"]],
+                colorSel:1,
+            },
+            methods:{
+                mouseover(tdItem){
+                    console.log(tdItem);
+                    this.select = tdItem;
+                },
+                change(e){
+                    console.log(e.target.value)
+                    this.colorSel = e.target.value
+                }
+                
+
+            }
+        })
+    </script>
+</body>
+</html>

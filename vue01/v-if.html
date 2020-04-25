@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .test{
+            width: 100px;
+            height: 100px;
+            background: skyblue;
+        }
+        .red{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .pink{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-bind:class="show?'red':'pink'"></div>
+        <button v-on:click = "change">toggle</button>
+        <br>
+        <input type="text" v-model = "value">
+        {{value}}
+        <br>
+        <ul>
+            <li v-for="item in list">{{item}}</li>
+        </ul>
+    </div>
+    
+    <script>
+        let vue = new Vue({
+            el:"#app",
+            data:{
+                show:true,
+                value:"你好",
+                list:["爱情","动作","恐怖","悬疑"]
+            },
+            methods:{
+                change(){
+                    console.log(this.show);
+                    this.show = !this.show;
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>

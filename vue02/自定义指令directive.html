@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue01/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-hehe>
+    </div>
+    <script>
+        // 全局自定义指令,在任何实例中都可以用到
+        Vue.directive("xixi",{
+            inserted(el){
+                el.focus();
+            }
+        })
+        let vue = new Vue({
+            el:"#app",
+            // 局部指令，只能用在一个地方
+            directives:{
+                "hehe":{
+                    inserted(el){
+                        el.focus();
+                    }
+                }
+            }
+            
+        })
+    </script>
+</body>
+</html>

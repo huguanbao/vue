@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 400px;
+            
+        }
+        .red{
+            background: red;
+        }
+        .green{
+            background: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="value"><button @click="add(value)">添加</button>
+        <ul>
+            <li v-for="(item,index) in list" 
+            :class="item.state?'green':'red'">{{item.event}}    
+            <button v-on:click = "del(index)">删除</button>
+            <span v-if = "item.state">已完成</span>
+            <button v-else @click = "finish(index)">待完成</button>
+        </li>
+            
+        </ul>
+    </div>
+    <script>
+        let  vue = new Vue({
+            el:"#app",
+            data:{
+               list:[{event:'今晚代码到天明',state:false},
+               {event:'明晚代码到天明',state:true},
+               {event:'明晚恐怖片到天明',state:false}],
+                value:""
+            },
+            methods:{
+                add(){
+                    this.list.unshift({event:this.value,state:false});
+                },
+                del(index){
+                    this.list.splice(index,1);
+                },
+                finish(index){
+                    this.list[index].state = true
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

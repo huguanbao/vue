@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue01/vue.js"></script>
+    <style>
+        .test{
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        
+        <hehe :show = "show"></hehe>
+        <xixi @buy = "buy"></xixi>
+    </div>
+    <!-- 组件模板1 -->
+    <template id="tpl1">
+        <div>
+            <div class="test" v-show = "show">
+                
+            </div>
+            
+        </div>
+    </template>
+    <!-- 组件模板2 -->
+    <template id="tpl2">
+        <div>
+            <button @click="toggle">toggle</button>
+        </div>
+    </template>
+    <script>
+        Vue.component("hehe",{
+            template:"#tpl1",
+            props:['show']
+        })
+        Vue.component("xixi",{
+            template:"#tpl2",
+            methods:{
+                toggle(){
+                    this.$emit("buy");
+                }
+            }
+        })
+        let vue = new Vue({
+            el:"#app",
+            data:{
+                show:true
+            },
+            methods:{
+                buy(){
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>
